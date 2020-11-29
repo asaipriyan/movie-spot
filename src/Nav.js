@@ -1,0 +1,37 @@
+import React, { useState, useEffect } from "react";
+import "./Nav.css";
+
+function Nav() {
+  const [show, handlShow] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        handlShow(true);
+      } else {
+        handlShow(false);
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll");
+    };
+  }, []);
+
+  return (
+    <div className={`nav ${show && 'nav_black'}`}>
+      <img
+        className="nav_logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+        alt="Netflix logo"
+      />
+
+      <img
+        className="nav_avantor"
+        src="https://ih0.redbubble.net/image.618410871.2644/flat,1000x1000,075,f.u2.jpg"
+        alt="Netflix avantor"
+      />
+    </div>
+  );
+}
+
+export default Nav;
